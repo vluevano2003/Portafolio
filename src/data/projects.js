@@ -73,7 +73,7 @@ export const projects = [
 
   {
     id: "sistema-lina",
-    title: "Sistema Lina",
+    title: "Sistema de Recepción y Validación de Comprobantes de Pago para el PE LINA",
     subtitle: "Gestión de Trámites Académicos",
     shortDescription: "Sistema institucional integral para la gestión de trámites estudiantiles con arquitectura desacoplada.",
     fullDescription: "Desarrollado durante mis prácticas profesionales en la Coordinación de Desarrollo de Proyectos de Software. El sistema digitaliza y optimiza la gestión de trámites universitarios, separando la lógica de negocio en una API robusta y una interfaz de usuario interactiva.",

@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { projects } from "../data/projects";
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github } from "lucide-react";

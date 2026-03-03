@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import { Github, Linkedin, Mail } from "lucide-react";
 
 function Footer() {
