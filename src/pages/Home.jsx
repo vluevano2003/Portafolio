@@ -1,6 +1,6 @@
 import { projects } from "../data/projects";
 import { Link } from "react-router-dom";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Figma } from "lucide-react";
 
 function Home() {
   return (
@@ -18,18 +18,35 @@ function Home() {
           liderazgo técnico y encontrar la solución más eficiente para asegurar
           que la tecnología impulse los objetivos de la organización.
         </h2>
-        <div className="flex gap-4">
+        
+        {/* BOTONES DE REDES */}
+        <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="#proyectos"
-            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus inline-block"
+            href="https://github.com/vluevano2003"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
           >
-            Ver mis proyectos
+            <Github size={20} />
+            GitHub
           </a>
           <a
-            href="#contacto"
-            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle inline-block"
+            href="https://linkedin.com/in/vluevano2003"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
-            Contáctame
+            <Linkedin size={20} />
+            LinkedIn
+          </a>
+          <a
+            href="https://www.figma.com/@victorluevano"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
+          >
+            <Figma size={20} />
+            Figma
           </a>
         </div>
       </section>
