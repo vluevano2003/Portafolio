@@ -135,7 +135,7 @@ function ProjectDetails() {
                   setCurrentImageIndex(index);
                 }
               }}
-              className={`absolute w-4/5 md:w-3/4 h-full object-cover rounded-xl border border-border-subtle transition-all duration-500 ease-out ${getImageStyle(index)}`}
+              className={`absolute w-4/5 md:w-3/4 h-full object-contain bg-black/5 dark:bg-black/20 rounded-xl border border-border-subtle transition-all duration-500 ease-out ${getImageStyle(index)}`}
             />
           ))}
 
@@ -202,17 +202,39 @@ function ProjectDetails() {
 
       <section className="flex flex-wrap gap-4 pt-8 border-t border-border-subtle">
         
+        {project.directDownloadLink && (
+          <a
+            href={project.directDownloadLink}
+            download
+            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
+          >
+            <Download size={20} />
+            Descargar Instalador (Windows)
+          </a>
+        )}
+
         {project.downloadLink && (
           <a
             href={project.downloadLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
+            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512" fill="currentColor">
               <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/>
             </svg>
-            Descargar para Windows
+            Ver Versiones (Releases)
+          </a>
+        )}
+
+        {project.apkDownloadLink && (
+          <a
+            href={project.apkDownloadLink}
+            download
+            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
+          >
+            <Download size={20} />
+            Descargar APK (Android)
           </a>
         )}
 

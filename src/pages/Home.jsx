@@ -63,11 +63,13 @@ function Home() {
               key={project.id}
               className="w-full bg-bg-card rounded-xl overflow-hidden border border-border-subtle hover:border-primary hover:shadow-lg hover:shadow-primary-focus transition-all hover:-translate-y-1 cursor-pointer group flex flex-col"
             >
-              <img
-                src={project.images[0]}
-                alt={project.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <div className="w-full h-48 bg-black/10 dark:bg-black/30 flex items-center justify-center overflow-hidden">
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
               <div className="p-6 flex-grow flex flex-col">
                 <h4 className="text-xl font-bold mb-2">{project.title}</h4>
                 <p className="text-text-muted text-sm mb-4 line-clamp-3">

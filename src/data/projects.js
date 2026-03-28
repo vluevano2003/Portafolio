@@ -68,7 +68,8 @@ export const projects = [
     ],
     repoLink: "https://github.com/vluevano2003/PriceStocker",
     demoLink: "",
-    downloadLink: "https://github.com/vluevano2003/PriceStocker/releases/latest"
+    downloadLink: "https://github.com/vluevano2003/PriceStocker/releases/latest",
+    directDownloadLink: "https://github.com/vluevano2003/PriceStocker/releases/latest/download/PriceStocker-Installer-1.4.1.exe"
   },
 
   {
@@ -102,5 +103,41 @@ export const projects = [
     repoLinkFront: "https://github.com/Rick-Landa/front-sistema-lina",
     repoLinkBack: "https://github.com/yuyo272003/lina-api",
     demoLink: "" 
+  },
+  
+  {
+    id: "bilt-tracker",
+    title: "BILT TRACKER",
+    subtitle: "Gestión de Entrenamientos en el Gimnasio",
+    shortDescription: "Aplicación móvil integral con React Native y Supabase para el seguimiento de rutinas y conexión social.",
+    fullDescription: "BILT TRACKER es una aplicación móvil integral para la gestión de entrenamientos en el gimnasio. Construida con React Native y Expo Router, ofrece una experiencia fluida, seguimiento en tiempo real, características sociales para conectar con otros atletas y un sistema robusto de backend totalmente dinámico potenciado por Supabase.",
+    badges: ["React Native", "Expo", "TypeScript", "Supabase", "AdMob"],
+    images: [
+      "/proyectos/bilt_login.jpg",
+      "/proyectos/bilt_routines.jpg",
+      "/proyectos/bilt_excercises.jpg",
+      "/proyectos/bilt_units.jpg",
+      "/proyectos/bilt_save_routines.jpg",
+      "/proyectos/bilt_save_packs.jpg"
+    ],
+    features: [
+      { title: "Autenticación Nativa", desc: "Login rápido con Google Sign-In y persistencia de sesión offline." },
+      { title: "Base de Datos en Tiempo Real", desc: "Más de 80 ejercicios con animaciones y desglose anatómico desde Supabase." },
+      { title: "Seguimiento Inteligente", desc: "Reproductor en segundo plano, temporizador flotante y protección offline del progreso." },
+      { title: "Red Social Fit", desc: "Feed global para ver la actividad de amigos, perfiles públicos/privados y notificaciones." },
+      { title: "UX/UI Avanzada", desc: "Interfaz Edge-to-Edge con tema dinámico (Claro/Oscuro) y manejo fluido de gestos." },
+      { title: "Monetización Orgánica", desc: "Integración nativa con Google AdMob en el feed y resúmenes de entrenamiento." }
+    ],
+    technologies: [
+      "Framework: React Native con Expo & TypeScript",
+      "Enrutamiento: Expo Router",
+      "Backend / BaaS: Supabase (PostgreSQL, Auth, Storage)",
+      "Gestión de Estado: React Context API",
+      "UI & Animaciones: react-native-reanimated, gesture-handler",
+      "Infraestructura: EAS Build, Google Cloud, AdMob"
+    ],
+    repoLink: "https://github.com/vluevano2003/Bilt",
+    demoLink: "",
+    apkDownloadLink: "https://github.com/vluevano2003/Bilt/releases/latest/download/BiltTracker-v1.0.0.apk"
   }
 ];
