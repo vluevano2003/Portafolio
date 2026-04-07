@@ -1,7 +1,20 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 
-function Footer() {
+function Footer({ lang = "es" }) {
   const currentYear = new Date().getFullYear();
+
+  const footerTexts = {
+    es: {
+      developed: "Sitio web diseñado y desarrollado con React y Tailwind CSS.",
+      emailAria: "Correo Electrónico",
+    },
+    en: {
+      developed: "Website designed and developed with React and Tailwind CSS.",
+      emailAria: "Email",
+    },
+  };
+
+  const t = footerTexts[lang];
 
   return (
     <footer className="border-t border-border-subtle bg-bg-base py-8 mt-12">
@@ -10,7 +23,7 @@ function Footer() {
           <p className="font-medium text-text-main mb-1">
             &copy; {currentYear} Víctor Luévano.
           </p>
-          <p>Sitio web diseñado y desarrollado con React y Tailwind CSS.</p>
+          <p>{t.developed}</p>
         </div>
 
         <div className="flex gap-5">
@@ -35,7 +48,7 @@ function Footer() {
           <a
             href="mailto:victoradrian_2003@outlook.com"
             className="text-text-muted hover:text-primary transition-colors"
-            aria-label="Correo Electrónico"
+            aria-label={t.emailAria}
           >
             <Mail size={22} />
           </a>

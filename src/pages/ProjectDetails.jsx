@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { projects } from "../data/projects";
+import { content } from "../data/projects";
 import {
   ArrowLeft,
   Package,
@@ -10,11 +10,15 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  Download
+  Download,
 } from "lucide-react";
 
-function ProjectDetails() {
+function ProjectDetails({ lang = "es" }) {
   const { id } = useParams();
+
+  const t = content[lang].projectDetails;
+  const projects = content[lang].projects;
+
   const project = projects.find((p) => p.id === id);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,9 +28,7 @@ function ProjectDetails() {
   }, []);
 
   if (!project) {
-    return (
-      <div className="text-center py-20 text-2xl">Proyecto no encontrado</div>
-    );
+    return <div className="text-center py-20 text-2xl">{t.notFound}</div>;
   }
 
   const nextImage = () => {
@@ -43,23 +45,17 @@ function ProjectDetails() {
 
   const getImageStyle = (index) => {
     const total = project.images.length;
-
-    if (index === currentImageIndex) {
+    if (index === currentImageIndex)
       return "translate-x-0 scale-100 opacity-100 z-20 cursor-zoom-in brightness-100 blur-none shadow-2xl shadow-primary/20";
-    }
-
-    if (total === 2) {
+    if (total === 2)
       return "translate-x-[30%] md:translate-x-[60%] scale-75 opacity-60 z-10 cursor-pointer brightness-50 blur-[2px] hover:brightness-75";
-    }
 
     const isPrev = index === (currentImageIndex - 1 + total) % total;
     const isNext = index === (currentImageIndex + 1) % total;
-
     if (isPrev)
       return "-translate-x-[40%] md:-translate-x-[60%] scale-75 opacity-60 z-10 cursor-pointer brightness-50 blur-[2px] hover:brightness-75";
     if (isNext)
       return "translate-x-[40%] md:translate-x-[60%] scale-75 opacity-60 z-10 cursor-pointer brightness-50 blur-[2px] hover:brightness-75";
-
     return "scale-50 opacity-0 z-0 pointer-events-none";
   };
 
@@ -78,7 +74,7 @@ function ProjectDetails() {
           </button>
           <img
             src={project.images[currentImageIndex]}
-            alt="Pantalla completa"
+            alt={t.fullScreenAlt}
             className="max-w-full max-h-full object-contain rounded-lg shadow-2xl border border-border-subtle"
             onClick={(e) => e.stopPropagation()}
           />
@@ -90,7 +86,7 @@ function ProjectDetails() {
         to="/"
         className="text-primary-light hover:text-primary mb-8 inline-block transition-colors"
       >
-        &larr; Volver al inicio
+        {t.back}
       </Link>
 
       <header className="mb-12">
@@ -129,11 +125,9 @@ function ProjectDetails() {
               src={img}
               alt={`${project.title} view ${index + 1}`}
               onClick={() => {
-                if (index === currentImageIndex) {
-                  setIsModalOpen(true);
-                } else {
-                  setCurrentImageIndex(index);
-                }
+                index === currentImageIndex
+                  ? setIsModalOpen(true)
+                  : setCurrentImageIndex(index);
               }}
               className={`absolute w-4/5 md:w-3/4 h-full object-contain bg-black/5 dark:bg-black/20 rounded-xl border border-border-subtle transition-all duration-500 ease-out ${getImageStyle(index)}`}
             />
@@ -152,12 +146,8 @@ function ProjectDetails() {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentImageIndex
-                  ? "bg-primary scale-125"
-                  : "bg-border-subtle hover:bg-text-muted"
-              }`}
-              aria-label={`Ir a la imagen ${index + 1}`}
+              className={`w-3 h-3 rounded-full transition-colors ${index === currentImageIndex ? "bg-primary scale-125" : "bg-border-subtle hover:bg-text-muted"}`}
+              aria-label={`${t.goToImage} ${index + 1}`}
             />
           ))}
         </div>
@@ -167,7 +157,7 @@ function ProjectDetails() {
       <section className="mb-16">
         <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Package className="text-primary" size={24} />
-          Características Principales
+          {t.featuresTitle}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {project.features.map((feature, index) => (
@@ -189,7 +179,7 @@ function ProjectDetails() {
       <section className="mb-16">
         <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Wrench className="text-primary" size={24} />
-          Tecnologías Utilizadas
+          {t.techTitle}
         </h3>
         <ul className="list-disc list-inside space-y-2 text-text-muted">
           {project.technologies.map((tech, index) => (
@@ -201,18 +191,16 @@ function ProjectDetails() {
       </section>
 
       <section className="flex flex-wrap gap-4 pt-8 border-t border-border-subtle">
-        
         {project.directDownloadLink && (
           <a
             href={project.directDownloadLink}
-            download
-            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-[#FF6600] hover:bg-[#CC5200] text-white transition-colors rounded-lg font-medium shadow-lg shadow-[#FF6600]/20 flex items-center gap-2"
           >
-            <Download size={20} />
-            Descargar Instalador (Windows)
+            {t.btnDownloadInstaller}
           </a>
         )}
-
         {project.downloadLink && (
           <a
             href={project.downloadLink}
@@ -220,24 +208,19 @@ function ProjectDetails() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512" fill="currentColor">
-              <path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/>
-            </svg>
-            Ver Versiones (Releases)
+            <Github size={20} /> {t.btnReleases}
           </a>
         )}
-
+        {/*}
         {project.apkDownloadLink && (
           <a
             href={project.apkDownloadLink}
             download
             className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
           >
-            <Download size={20} />
-            Descargar APK (Android)
+            <Download size={20} /> {t.btnApk}
           </a>
-        )}
-
+        )}*/}
         {project.demoLink && (
           <a
             href={project.demoLink}
@@ -245,11 +228,9 @@ function ProjectDetails() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
           >
-            <ExternalLink size={20} />
-            Visitar Sitio Web
+            <ExternalLink size={20} /> {t.btnWebsite}
           </a>
         )}
-
         {project.repoLink && (
           <a
             href={project.repoLink}
@@ -257,11 +238,9 @@ function ProjectDetails() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
-            <Github size={20} />
-            Ver Código
+            <Github size={20} /> {t.btnCode}
           </a>
         )}
-
         {project.repoLinkFront && (
           <a
             href={project.repoLinkFront}
@@ -269,11 +248,9 @@ function ProjectDetails() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
-            <Github size={20} />
-            Código Frontend
+            <Github size={20} /> {t.btnFront}
           </a>
         )}
-
         {project.repoLinkBack && (
           <a
             href={project.repoLinkBack}
@@ -281,11 +258,9 @@ function ProjectDetails() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
           >
-            <Github size={20} />
-            Código Backend
+            <Github size={20} /> {t.btnBack}
           </a>
         )}
-
       </section>
     </div>
   );

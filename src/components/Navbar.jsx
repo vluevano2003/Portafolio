@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 
-function Navbar() {
+function Navbar({ lang, setLang }) {
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
 
@@ -16,6 +16,16 @@ function Navbar() {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
+
+  const toggleLanguage = () => {
+    setLang(lang === "es" ? "en" : "es");
+  };
+
+  const navTexts = {
+    es: { home: "Inicio", projects: "Proyectos", contact: "Contacto" },
+    en: { home: "Home", projects: "Projects", contact: "Contact" },
+  };
+  const t = navTexts[lang];
 
   return (
     <nav className="sticky top-0 z-50 bg-bg-base border-b border-border-subtle">
@@ -45,23 +55,36 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:flex gap-6 text-sm font-medium text-text-muted">
+        {/* --- MENÚ ESCRITORIO --- */}
+        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
           <a href="/#inicio" className="hover:text-primary transition-colors">
-            Inicio
+            {t.home}
           </a>
           <a
             href="/#proyectos"
             className="hover:text-primary transition-colors"
           >
-            Proyectos
+            {t.projects}
           </a>
           <a href="/#contacto" className="hover:text-primary transition-colors">
-            Contacto
+            {t.contact}
           </a>
+
+          {/* BOTÓN DE IDIOMA ESCRITORIO */}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 px-3 py-1.5 ml-4 border border-border-subtle rounded-full hover:border-primary hover:text-primary transition-colors bg-bg-card"
+            title="Cambiar idioma / Change language"
+          >
+            <Globe size={16} />
+            <span className="font-bold uppercase">
+              {lang === "es" ? "ES" : "EN"}
+            </span>
+          </button>
         </div>
       </div>
 
-      {/* --- MENÚ LATERAL MÓVIL --- */}
+      {/* --- FONDO OSCURO MENÚ MÓVIL --- */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] md:hidden animate-fade-in"
@@ -69,6 +92,7 @@ function Navbar() {
         />
       )}
 
+      {/* --- MENÚ LATERAL MÓVIL --- */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-bg-base border-r border-border-subtle z-[70] shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-20 px-6 gap-8 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -88,22 +112,36 @@ function Navbar() {
             className="text-lg font-medium text-text-main hover:text-primary transition-colors"
             onClick={closeMenu}
           >
-            Inicio
+            {t.home}
           </a>
           <a
             href="/#proyectos"
             className="text-lg font-medium text-text-main hover:text-primary transition-colors"
             onClick={closeMenu}
           >
-            Proyectos
+            {t.projects}
           </a>
           <a
             href="/#contacto"
             className="text-lg font-medium text-text-main hover:text-primary transition-colors"
             onClick={closeMenu}
           >
-            Contacto
+            {t.contact}
           </a>
+
+          {/* BOTÓN DE IDIOMA MÓVIL */}
+          <button
+            onClick={() => {
+              toggleLanguage();
+              closeMenu();
+            }}
+            className="flex items-center justify-center gap-2 mt-4 px-4 py-3 border border-border-subtle rounded-lg hover:bg-bg-card transition-colors text-text-main"
+          >
+            <Globe size={20} />
+            <span className="font-medium">
+              {lang === "es" ? "Switch to English" : "Cambiar a Español"}
+            </span>
+          </button>
         </div>
       </div>
     </nav>
