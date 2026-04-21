@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  Download,
+  Store,
 } from "lucide-react";
 
 function ProjectDetails({ lang = "es" }) {
@@ -211,16 +211,13 @@ function ProjectDetails({ lang = "es" }) {
             <Github size={20} /> {t.btnReleases}
           </a>
         )}
-        {/*}
-        {project.apkDownloadLink && (
-          <a
-            href={project.apkDownloadLink}
-            download
-            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
-          >
-            <Download size={20} /> {t.btnApk}
-          </a>
-        )}*/}
+
+        {project.playStoreUpcoming && (
+          <div className="px-6 py-3 bg-bg-card/50 text-text-muted border border-border-subtle/50 rounded-lg font-medium flex items-center gap-2 cursor-not-allowed select-none opacity-80">
+            <Store size={20} /> {t.btnPlayStore}
+          </div>
+        )}
+
         {project.demoLink && (
           <a
             href={project.demoLink}
