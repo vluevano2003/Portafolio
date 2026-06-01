@@ -67,25 +67,45 @@ function ProjectDetails({ lang = "es" }) {
           onClick={() => setIsModalOpen(false)}
         >
           <button
-            className="absolute top-6 right-6 p-2 bg-bg-card/50 hover:bg-primary text-white rounded-full transition-colors"
+            className="absolute top-6 right-6 p-2 bg-bg-card/50 hover:bg-primary text-white rounded-full transition-colors z-50"
             onClick={() => setIsModalOpen(false)}
           >
             <X size={28} />
           </button>
+
+          {project.images.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+              className="absolute left-4 md:left-10 p-3 bg-bg-card/50 hover:bg-primary text-white rounded-full transition-colors z-50"
+            >
+              <ChevronLeft size={32} />
+            </button>
+          )}
+
           <img
             src={project.images[currentImageIndex]}
             alt={t.fullScreenAlt}
-            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl border border-border-subtle"
+            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl border border-border-subtle cursor-default"
             onClick={(e) => e.stopPropagation()}
           />
+
+          {project.images.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+              className="absolute right-4 md:right-10 p-3 bg-bg-card/50 hover:bg-primary text-white rounded-full transition-colors z-50"
+            >
+              <ChevronRight size={32} />
+            </button>
+          )}
         </div>
       )}
 
-      {/*CONTENIDO PRINCIPAL*/}
+      {/*Contenido principal*/}
       <Link
-        to="/"
-        className="text-primary-light hover:text-primary mb-8 inline-block transition-colors"
+        to="/proyectos"
+        className="text-primary-light hover:text-primary mb-8 inline-flex items-center gap-2 transition-colors font-medium"
       >
+        <ArrowLeft size={20} />
         {t.back}
       </Link>
 
@@ -104,12 +124,12 @@ function ProjectDetails({ lang = "es" }) {
           ))}
         </div>
 
-        <p className="text-lg text-text-main opacity-90 leading-relaxed border-l-4 border-primary pl-4">
+        <p className="text-lg text-text-main opacity-90 leading-relaxed border-l-4 border-primary pl-4 text-justify">
           {project.fullDescription}
         </p>
       </header>
 
-      {/*CARRUSEL*/}
+      {/*Carrusel*/}
       <section className="mb-16 relative">
         <div className="relative h-56 sm:h-72 md:h-96 w-full flex justify-center items-center overflow-hidden py-4">
           <button
@@ -153,7 +173,7 @@ function ProjectDetails({ lang = "es" }) {
         </div>
       </section>
 
-      {/*CARACTERÍSTICAS*/}
+      {/*Características*/}
       <section className="mb-16">
         <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
           <Package className="text-primary" size={24} />
@@ -168,7 +188,7 @@ function ProjectDetails({ lang = "es" }) {
               <h4 className="font-bold text-primary-light mb-2">
                 {feature.title}
               </h4>
-              <p className="text-text-muted text-sm leading-relaxed">
+              <p className="text-text-muted text-sm leading-relaxed text-justify">
                 {feature.desc}
               </p>
             </div>
