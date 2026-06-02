@@ -14,7 +14,7 @@ function Contact({ lang = "es" }) {
       location: "Coatzacoalcos, Veracruz, MX",
       profileTitle: "Professional Profile",
       p1: "Software Engineer with experience in developing web, mobile, and desktop applications, specialized in analyzing complex requirements, software design, and development lifecycle management. Results-oriented, with proven capabilities in technical leadership, collaborative work, and complex problem-solving.",
-      p2: "I am looking to join a dynamic organization as a software engineer, with the goal of designing and implementing scalable, innovative, and high-quality technological solutions that drive the digital transformation of the company."
+      p2: "I'm looking to join a dynamic organization as a software engineer, with the goal of designing and implementing scalable, innovative, and high-quality technological solutions that drive the digital transformation of the company."
     }
   };
 
