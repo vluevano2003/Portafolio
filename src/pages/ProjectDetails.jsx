@@ -237,6 +237,16 @@ function ProjectDetails({ lang = "es" }) {
             <Store size={20} /> {t.btnPlayStore}
           </div>
         )}
+        {project.playStoreLink && (
+          <a
+            href={project.playStoreLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-[#01875F] hover:bg-[#016A4B] text-white transition-colors rounded-lg font-medium shadow-lg shadow-[#01875F]/20 flex items-center gap-2"
+          >
+            <Store size={20} /> {t.btnPlayStore}
+          </a>
+        )}
 
         {project.demoLink && (
           <a
