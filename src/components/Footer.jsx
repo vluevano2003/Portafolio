@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Figma } from "lucide-react";
 
 function Footer({ lang = "es" }) {
   const currentYear = new Date().getFullYear();
@@ -21,7 +21,7 @@ function Footer({ lang = "es" }) {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-text-muted text-sm text-center md:text-left">
           <p className="font-medium text-text-main mb-1">
-            &copy; {currentYear} Víctor Luévano.
+            &copy; {currentYear} VL Systems.
           </p>
           <p>{t.developed}</p>
         </div>
@@ -44,6 +44,15 @@ function Footer({ lang = "es" }) {
             aria-label="LinkedIn"
           >
             <Linkedin size={22} />
+          </a>
+          <a
+            href="https://www.figma.com/@victorluevano"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-muted hover:text-primary transition-colors"
+            aria-label="Figma"
+          >
+            <Figma size={22} />
           </a>
           <a
             href="mailto:victoradrian_2003@outlook.com"

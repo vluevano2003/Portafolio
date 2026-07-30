@@ -3,23 +3,27 @@ import { useParams, Link } from "react-router-dom";
 import { content } from "../data/projects";
 import {
   ArrowLeft,
-  Package,
-  Wrench,
-  Github,
-  ExternalLink,
   ChevronLeft,
   ChevronRight,
   X,
   Store,
+  Download,
+  ExternalLink
 } from "lucide-react";
 
 function ProjectDetails({ lang = "es" }) {
   const { id } = useParams();
 
   const t = content[lang].projectDetails;
-  const projects = content[lang].projects;
+  const clients = content[lang].clients;
+  const products = content[lang].products;
 
-  const project = projects.find((p) => p.id === id);
+  const clientProject = clients.find((p) => p.id === id);
+  const productProject = products.find((p) => p.id === id);
+
+  const project = clientProject || productProject;
+  const isProduct = !!productProject;
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +32,7 @@ function ProjectDetails({ lang = "es" }) {
   }, []);
 
   if (!project) {
-    return <div className="text-center py-20 text-2xl">{t.notFound}</div>;
+    return <div className="text-center py-20 text-2xl text-text-main">{t.notFound}</div>;
   }
 
   const nextImage = () => {
@@ -46,7 +50,7 @@ function ProjectDetails({ lang = "es" }) {
   const getImageStyle = (index) => {
     const total = project.images.length;
     if (index === currentImageIndex)
-      return "translate-x-0 scale-100 opacity-100 z-20 cursor-zoom-in brightness-100 blur-none shadow-2xl shadow-primary/20";
+      return "translate-x-0 scale-100 opacity-100 z-20 cursor-zoom-in brightness-100 blur-none";
     if (total === 2)
       return "translate-x-[30%] md:translate-x-[60%] scale-75 opacity-60 z-10 cursor-pointer brightness-50 blur-[2px] hover:brightness-75";
 
@@ -60,7 +64,7 @@ function ProjectDetails({ lang = "es" }) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-10 animate-fade-in relative">
+    <div className="max-w-6xl mx-auto px-4 pt-8 pb-4 md:pt-16 md:pb-8 animate-fade-in relative w-full text-center">
       {isModalOpen && (
         <div
           className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex justify-center items-center p-4 md:p-10 cursor-zoom-out animate-fade-in"
@@ -100,43 +104,60 @@ function ProjectDetails({ lang = "es" }) {
         </div>
       )}
 
-      {/*Contenido principal*/}
-      <Link
-        to="/proyectos"
-        className="text-primary-light hover:text-primary mb-8 inline-flex items-center gap-2 transition-colors font-medium"
-      >
-        <ArrowLeft size={20} />
-        {t.back}
-      </Link>
+      {/* Botón de retroceso */}
+      <div className="flex justify-start mb-8 md:mb-12">
+        <Link
+          to="/"
+          className="text-primary-light hover:text-primary inline-flex items-center gap-2 transition-colors font-medium"
+        >
+          <ArrowLeft size={20} />
+          {t.back}
+        </Link>
+      </div>
 
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
-        <h2 className="text-xl text-text-muted mb-6">{project.subtitle}</h2>
-
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.badges.map((badge) => (
-            <span
-              key={badge}
-              className="bg-bg-card border border-border-subtle text-text-muted px-3 py-1 rounded-full text-sm font-medium"
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-
-        <p className="text-lg text-text-main opacity-90 leading-relaxed border-l-4 border-primary pl-4 text-justify">
-          {project.fullDescription}
+      {/* Hero Section */}
+      <header className="mb-12 md:mb-16 flex flex-col items-center max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-2 md:mb-1 text-primary italic tracking-tight">{project.title}</h1>
+        <h2 className="text-2xl sm:text-3xl md:text-5xl text-text-main font-bold mb-6 tracking-tight">{project.subtitle}</h2>
+        <p className="text-lg md:text-xl text-text-muted leading-relaxed max-w-3xl mx-auto mb-10">
+          {project.shortDescription}
         </p>
+
+        {/* Botones de acción */}
+        <div className="flex flex-wrap gap-4 justify-center">
+          {!isProduct && project.demoLink && (
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 md:py-4 bg-primary hover:bg-primary-dark text-white transition-colors rounded-full font-bold shadow-lg shadow-primary/20 flex items-center gap-3 text-base md:text-lg"
+            >
+              <ExternalLink size={20} /> {t.btnWebsite}
+            </a>
+          )}
+          {isProduct && project.directDownloadLink && (
+            <a href={project.directDownloadLink} target="_blank" rel="noopener noreferrer" className="px-8 py-3 md:py-4 bg-primary hover:bg-primary-dark text-white transition-colors rounded-full font-bold shadow-lg shadow-primary/20 flex items-center gap-3 text-base md:text-lg">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3,12V6.75L9,5.43V11.91L3,12M21,3V12H10V5.04L21,3M3,17.25V12H9V18.57L3,17.25M21,21V12H10V18.96L21,21Z" /></svg>
+              {t.btnDownloadInstaller}
+            </a>
+          )}
+          {isProduct && project.playStoreLink && (
+            <a href={project.playStoreLink} target="_blank" rel="noopener noreferrer" className="px-8 py-3 md:py-4 bg-[#01875F] hover:bg-[#016A4B] text-white transition-colors rounded-full font-bold shadow-lg shadow-[#01875F]/20 flex items-center gap-3 text-base md:text-lg">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" /></svg>
+              {t.btnPlayStore}
+            </a>
+          )}
+        </div>
       </header>
 
-      {/*Carrusel*/}
-      <section className="mb-16 relative">
-        <div className="relative h-56 sm:h-72 md:h-96 w-full flex justify-center items-center overflow-hidden py-4">
+      {/* Carrusel */}
+      <section className="mb-24 relative max-w-5xl mx-auto">
+        <div className="relative h-64 sm:h-80 md:h-[500px] w-full flex justify-center items-center overflow-hidden py-4 bg-bg-card rounded-[2rem]">
           <button
             onClick={prevImage}
-            className="absolute left-2 md:left-0 z-30 p-2 bg-bg-card/80 hover:bg-primary border border-border-subtle hover:border-primary text-text-main rounded-full backdrop-blur-sm transition-all shadow-lg"
+            className="absolute left-1 sm:left-2 md:left-6 z-30 p-2 md:p-3 bg-black/50 hover:bg-primary text-white rounded-full backdrop-blur-sm transition-all shadow-lg"
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} className="md:w-6 md:h-6" />
           </button>
 
           {project.images.map((img, index) => (
@@ -149,46 +170,52 @@ function ProjectDetails({ lang = "es" }) {
                   ? setIsModalOpen(true)
                   : setCurrentImageIndex(index);
               }}
-              className={`absolute w-4/5 md:w-3/4 h-full object-contain bg-black/5 dark:bg-black/20 rounded-xl border border-border-subtle transition-all duration-500 ease-out ${getImageStyle(index)}`}
+              className={`absolute max-w-[80%] md:max-w-[75%] max-h-[90%] w-auto h-auto object-contain rounded-2xl md:rounded-[2rem] transition-all duration-500 ease-out ${getImageStyle(index)}`}
             />
           ))}
 
           <button
             onClick={nextImage}
-            className="absolute right-2 md:right-0 z-30 p-2 bg-bg-card/80 hover:bg-primary border border-border-subtle hover:border-primary text-text-main rounded-full backdrop-blur-sm transition-all shadow-lg"
+            className="absolute right-1 sm:right-2 md:right-6 z-30 p-2 md:p-3 bg-black/50 hover:bg-primary text-white rounded-full backdrop-blur-sm transition-all shadow-lg"
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} className="md:w-6 md:h-6" />
           </button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex justify-center gap-3 mt-6">
           {project.images.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${index === currentImageIndex ? "bg-primary scale-125" : "bg-border-subtle hover:bg-text-muted"}`}
+              className={`w-3 h-3 rounded-full transition-all ${index === currentImageIndex ? "bg-primary w-8" : "bg-border-subtle hover:bg-text-muted"}`}
               aria-label={`${t.goToImage} ${index + 1}`}
             />
           ))}
         </div>
       </section>
 
-      {/*Características*/}
-      <section className="mb-16">
-        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Package className="text-primary" size={24} />
-          {t.featuresTitle}
+      {/* Qué es */}
+      <section className="mb-16 text-center max-w-4xl mx-auto">
+        <h3 className="text-3xl md:text-4xl font-bold mb-6 text-text-main">
+          ¿Qué es <span className="text-primary italic font-serif">{project.title}</span>?
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <p className="text-lg md:text-xl text-text-muted leading-relaxed">
+          {project.fullDescription}
+        </p>
+      </section>
+
+      {/* Características */}
+      <section className="mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-left">
           {project.features.map((feature, index) => (
             <div
               key={index}
-              className="bg-bg-card p-5 rounded-lg border border-border-subtle"
+              className="bg-transparent p-6 md:p-8 rounded-2xl border border-dashed border-border-subtle hover:border-primary/50 transition-colors"
             >
-              <h4 className="font-bold text-primary-light mb-2">
+              <h4 className="font-semibold text-text-main mb-3 text-base md:text-lg">
                 {feature.title}
               </h4>
-              <p className="text-text-muted text-sm leading-relaxed text-justify">
+              <p className="text-sm md:text-base text-text-muted leading-relaxed">
                 {feature.desc}
               </p>
             </div>
@@ -196,99 +223,49 @@ function ProjectDetails({ lang = "es" }) {
         </div>
       </section>
 
-      <section className="mb-16">
-        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <Wrench className="text-primary" size={24} />
-          {t.techTitle}
-        </h3>
-        <ul className="list-disc list-inside space-y-2 text-text-muted">
-          {project.technologies.map((tech, index) => (
-            <li key={index} className="pl-2">
-              {tech}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="flex flex-wrap gap-4 pt-8 border-t border-border-subtle">
-        {project.directDownloadLink && (
-          <a
-            href={project.directDownloadLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-[#FF6600] hover:bg-[#CC5200] text-white transition-colors rounded-lg font-medium shadow-lg shadow-[#FF6600]/20 flex items-center gap-2"
-          >
-            {t.btnDownloadInstaller}
-          </a>
-        )}
-        {project.downloadLink && (
-          <a
-            href={project.downloadLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
-          >
-            <Github size={20} /> {t.btnReleases}
-          </a>
+      <div className="bg-bg-card p-8 md:p-12 rounded-[2rem] mb-8 max-w-5xl mx-auto">
+        {/* Características Técnicas */}
+        {project.technicalFeatures && (
+          <section className="mb-16">
+            <h3 className="text-3xl font-bold mb-10 text-center text-text-main">
+              {t.technicalFeaturesTitle}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-left">
+              {project.technicalFeatures.map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-bg-base p-6 md:p-8 rounded-2xl border border-dashed border-border-subtle hover:border-primary/50 transition-colors"
+                >
+                  <h4 className="font-semibold text-text-main mb-3 text-base md:text-lg">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm md:text-base text-text-muted leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
 
-        {project.playStoreUpcoming && (
-          <div className="px-6 py-3 bg-bg-card/50 text-text-muted border border-border-subtle/50 rounded-lg font-medium flex items-center gap-2 cursor-not-allowed select-none opacity-80">
-            <Store size={20} /> {t.btnPlayStore}
+        {/* Tecnologías */}
+        <section className="text-center max-w-4xl mx-auto">
+          <h3 className="text-3xl font-bold mb-8 text-text-main">
+            {t.techTitle}
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {project.technologies.map((tech, index) => (
+              <div
+                key={index}
+                className="bg-bg-base border border-border-subtle rounded-xl px-5 py-3 text-sm font-medium text-text-main shadow-sm hover:border-primary/50 transition-colors"
+              >
+                {tech}
+              </div>
+            ))}
           </div>
-        )}
-        {project.playStoreLink && (
-          <a
-            href={project.playStoreLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-[#01875F] hover:bg-[#016A4B] text-white transition-colors rounded-lg font-medium shadow-lg shadow-[#01875F]/20 flex items-center gap-2"
-          >
-            <Store size={20} /> {t.btnPlayStore}
-          </a>
-        )}
+        </section>
+      </div>
 
-        {project.demoLink && (
-          <a
-            href={project.demoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-primary hover:bg-primary-dark transition-colors rounded-lg font-medium shadow-lg shadow-primary-focus flex items-center gap-2"
-          >
-            <ExternalLink size={20} /> {t.btnWebsite}
-          </a>
-        )}
-        {project.repoLink && (
-          <a
-            href={project.repoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
-          >
-            <Github size={20} /> {t.btnCode}
-          </a>
-        )}
-        {project.repoLinkFront && (
-          <a
-            href={project.repoLinkFront}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
-          >
-            <Github size={20} /> {t.btnFront}
-          </a>
-        )}
-        {project.repoLinkBack && (
-          <a
-            href={project.repoLinkBack}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-bg-card hover:bg-bg-card-hover transition-colors rounded-lg font-medium border border-border-subtle flex items-center gap-2"
-          >
-            <Github size={20} /> {t.btnBack}
-          </a>
-        )}
-      </section>
     </div>
   );
 }

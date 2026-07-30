@@ -1,16 +1,36 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #f97316;
   --color-primary-light: #fb923c;
   --color-primary-dark: #ea580c;
   --color-primary-focus: rgba(249, 115, 22, 0.25);
-  --color-bg-base: #121212;
-  --color-bg-card: rgba(24, 24, 27, 0.6);
-  --color-bg-card-hover: rgba(39, 39, 42, 0.8);
-  --color-text-main: #f4f4f5;
-  --color-text-muted: #a1a1aa;
-  --color-border-subtle: rgba(63, 63, 70, 0.5);
+  --color-bg-base: var(--bg-base);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+}
+
+:root {
+  --bg-base: #ffffff;
+  --bg-card: rgba(244, 244, 245, 0.8);
+  --bg-card-hover: rgba(228, 228, 231, 0.9);
+  --text-main: #18181b;
+  --text-muted: #52525b;
+  --border-subtle: rgba(212, 212, 216, 0.8);
+}
+
+:root.dark {
+  --bg-base: #121212;
+  --bg-card: rgba(24, 24, 27, 0.6);
+  --bg-card-hover: rgba(39, 39, 42, 0.8);
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --border-subtle: rgba(63, 63, 70, 0.5);
 }
 
 body {
@@ -21,6 +41,7 @@ body {
     radial-gradient(circle at 85% 30%, rgba(251, 146, 60, 0.08) 0%, transparent 25%);
   background-attachment: fixed;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
