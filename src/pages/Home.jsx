@@ -43,7 +43,7 @@ function Home({ lang = "es" }) {
   };
 
   return (
-    <div id="inicio" className="animate-fade-in relative pb-8">
+    <div id="inicio" className="animate-fade-in relative pb-8 -mt-20">
       {/* Hero Section */}
       <section className="relative w-full min-h-[600px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -53,17 +53,17 @@ function Home({ lang = "es" }) {
             className="w-full h-full object-cover object-center opacity-60 md:opacity-80"
             onError={(e) => { e.target.src = "https://placehold.co/1920x1080?text=Coatzacoalcos" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-bg-base from-20% via-bg-base/80 via-60% to-transparent to-100% z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-bg-base from-30% md:from-20% via-bg-base/80 via-70% md:via-60% to-transparent to-100% z-10"></div>
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg-base to-transparent z-10"></div>
         </div>
 
         {/* Contenido */}
-        <div className="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-8 pt-32 pb-20 md:py-32">
-          <div className="max-w-2xl space-y-6 md:pr-8">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-text-main drop-shadow-sm leading-[1.15]">
+        <div className="relative z-20 w-full max-w-6xl mx-auto px-6 md:px-8 pt-32 pb-20 md:pt-48 md:pb-32">
+          <div className="max-w-2xl space-y-6 md:pr-8 flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-text-main leading-[1.15]">
               {t.greeting} <br className="hidden md:block" /><span className="text-primary italic font-serif">{t.companyName}</span>
             </h1>
-            <p className="text-lg md:text-xl text-text-main md:text-text-muted font-medium max-w-lg drop-shadow-sm leading-relaxed">
+            <p className="text-lg md:text-xl text-text-main md:text-text-muted font-medium max-w-lg leading-relaxed">
               {t.description}
             </p>
             <div className="pt-4">
@@ -79,7 +79,7 @@ function Home({ lang = "es" }) {
       <div className="w-full max-w-6xl mx-auto px-4 space-y-24 pt-16 pb-8">
 
         {/* Sección sobre mi */}
-        <section id="sobre-mi" className="relative z-10 flex flex-col md:flex-row gap-12 items-center bg-bg-card p-10 md:p-16 rounded-[2.5rem] border border-border-subtle shadow-xl w-full">
+        <section id="sobre-mi" className="relative z-10 flex flex-col md:flex-row gap-12 items-center bg-bg-card p-10 md:p-16 rounded-[2.5rem] border border-border-subtle w-full">
           <div className="w-full md:w-1/3 flex justify-center">
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-bg-base shadow-[0_0_0_4px_rgba(249,115,22,0.5)]">
               <img src="/profile.jpg" alt="Víctor Luévano" className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none' }} />
@@ -109,10 +109,10 @@ function Home({ lang = "es" }) {
           <div
             ref={carouselRef}
             onScroll={handleScroll}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 max-w-7xl mx-auto w-full pt-16 md:pt-20 pb-16 md:pb-20 px-4 md:px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
+            className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 max-w-7xl mx-auto w-full pt-14 md:pt-16 pb-16 md:pb-20 px-4 md:px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
           >
             {products.map((product) => (
-              <div key={product.id} className="flex-none w-[90vw] md:w-[calc(50%-1rem)] snap-center bg-bg-card rounded-3xl p-6 md:p-8 border border-primary transition-all relative group shadow-xl flex flex-col justify-end md:justify-center pt-[170px] md:pt-8 md:min-h-[260px] mb-8 md:mb-6 mt-12 md:mt-0">
+              <div key={product.id} className="flex-none w-[90vw] md:w-[calc(50%-1rem)] snap-center bg-bg-card rounded-3xl p-6 md:p-8 border border-primary transition-all relative group flex flex-col justify-end md:justify-center pt-[140px] md:pt-8 md:min-h-[260px] mb-8 md:mb-6 mt-4 md:mt-0">
 
                 <div className="relative z-20 w-full md:w-[55%] md:pr-4 flex flex-col items-center md:items-start text-center md:text-left gap-4 md:gap-6 pb-6 md:pb-0">
                   <div>
@@ -132,7 +132,7 @@ function Home({ lang = "es" }) {
 
                 <div className="absolute top-[-50px] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-20px] md:top-1/2 md:-translate-y-1/2 z-30 w-[90%] md:w-[50%] flex justify-center items-start md:items-center opacity-100 pointer-events-none group-hover:scale-110 transition-transform duration-500 ease-out">
                   {product.device === 'laptop' ? (
-                    <div className="relative flex flex-col items-center scale-[0.75] md:scale-[0.85] origin-top md:origin-right">
+                    <div className="relative flex flex-col items-center scale-[0.75] md:scale-[0.85] translate-y-10 md:-translate-x-9.5 md:translate-y-0 origin-top md:origin-right">
                       <div className="relative bg-gray-800 border-[6px] border-gray-800 rounded-t-lg h-[150px] w-[240px]">
                         <div className="rounded-sm overflow-hidden h-full bg-black">
                           <img src={product.images[0]} className="h-full w-full object-cover" alt={product.title} />
@@ -143,9 +143,9 @@ function Home({ lang = "es" }) {
                       </div>
                     </div>
                   ) : product.device === 'mobile' ? (
-                    <div className="relative flex flex-col items-center scale-[0.65] md:scale-100 origin-top md:origin-center">
-                      <div className="relative bg-gray-800 border-[10px] border-gray-800 rounded-[2.5rem] h-[300px] md:h-[350px] w-[145px] md:w-[170px]">
-                        <div className="w-[40px] md:w-[50px] h-[14px] md:h-[16px] bg-gray-800 top-0 rounded-b-[0.5rem] md:rounded-b-[0.6rem] left-1/2 -translate-x-1/2 absolute z-10"></div>
+                    <div className="relative flex flex-col items-center scale-[0.55] md:scale-[0.85] origin-top md:origin-center">
+                      <div className="relative bg-[#363636] border-[10px] border-[#363636] rounded-[2.5rem] h-[300px] md:h-[350px] w-[145px] md:w-[170px]">
+                        <div className="w-[40px] md:w-[50px] h-[14px] md:h-[16px] bg-[#363636] top-0 rounded-b-[0.5rem] md:rounded-b-[0.6rem] left-1/2 -translate-x-1/2 absolute z-10"></div>
                         <div className="rounded-[1.5rem] md:rounded-[2rem] overflow-hidden w-full h-full bg-black">
                           <img src={product.images[0]} className="h-full w-full object-cover" alt={product.title} />
                         </div>
@@ -165,8 +165,8 @@ function Home({ lang = "es" }) {
                 key={i}
                 onClick={() => scrollToProduct(i)}
                 className={`h-2 rounded-full transition-all duration-300 ${i === activeProductIndex
-                    ? 'w-8 bg-primary shadow-[0_0_8px_rgba(249,115,22,0.6)]'
-                    : 'w-2 bg-border-subtle hover:bg-text-muted'
+                  ? 'w-8 bg-primary'
+                  : 'w-2 bg-border-subtle hover:bg-text-muted'
                   }`}
                 aria-label={`Go to product ${i + 1}`}
               ></button>

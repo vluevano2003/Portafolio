@@ -51,11 +51,11 @@ function Navbar({ lang, setLang, theme, setTheme }) {
             >
               <img
                 src="/icon_white.png"
-                alt="VL Systems Logo"
+                alt="VaLm Systems Logo"
                 className={`h-8 md:h-12 w-auto group-hover:opacity-80 transition-opacity ${theme === 'light' ? 'invert' : ''}`}
               />
               <span className="text-xl md:text-3xl font-bold text-primary tracking-tighter group-hover:text-primary-light transition-colors">
-                VL Systems
+                VaLm Systems
               </span>
             </Link>
           </div>
@@ -65,7 +65,7 @@ function Navbar({ lang, setLang, theme, setTheme }) {
             <Link to="/" className="hover:text-primary transition-colors">
               {t.home}
             </Link>
-            
+
             <div className="relative group py-2">
               <button className="flex items-center gap-1 hover:text-primary transition-colors">
                 {t.projects}
@@ -74,11 +74,11 @@ function Navbar({ lang, setLang, theme, setTheme }) {
                 </svg>
               </button>
               <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300">
-                <div className="bg-bg-card border border-border-subtle shadow-xl rounded-2xl p-2 w-56 flex flex-col gap-1">
-                  <Link to="/proyecto/pricestocker" className="px-4 py-3 hover:bg-bg-base rounded-xl transition-colors font-semibold text-text-main hover:text-primary">
+                <div className="bg-bg-base border border-border-subtle shadow-xl rounded-2xl p-2 w-56 flex flex-col gap-1">
+                  <Link to="/proyecto/pricestocker" className="px-4 py-3 hover:bg-bg-card rounded-xl transition-colors font-semibold text-text-main hover:text-primary">
                     PriceStocker
                   </Link>
-                  <Link to="/proyecto/bilt-tracker" className="px-4 py-3 hover:bg-bg-base rounded-xl transition-colors font-semibold text-text-main hover:text-primary">
+                  <Link to="/proyecto/bilt-tracker" className="px-4 py-3 hover:bg-bg-card rounded-xl transition-colors font-semibold text-text-main hover:text-primary">
                     BILT TRACKER
                   </Link>
                 </div>

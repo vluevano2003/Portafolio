@@ -46,8 +46,8 @@ export const content = {
           "/proyectos/sada-config.png",
         ],
         features: [
-          { title: "Compra Fácil", desc: "Catálogo digital intuitivo para que tus clientes encuentren lo que necesitan en segundos." },
-          { title: "Inventario Seguro", desc: "Nunca vendas algo que no tienes gracias a la sincronización instantánea de tu inventario." },
+          { title: "Gestión Administrativa Completa", desc: "Agrega, modifica o elimina productos, cuentas de usuario y configura los datos del sitio desde un panel de administrador." },
+          { title: "Disponibilidad en Tiempo Real", desc: "Maneja fácilmente el catálogo mostrando al instante a tus clientes si un producto está disponible o agotado." },
           { title: "Rápido y Accesible", desc: "Diseñado para cargar al instante desde cualquier teléfono o computadora." },
           { title: "Contacto Directo", desc: "Tus clientes se conectan directamente contigo por WhatsApp para cerrar ventas de forma personal." }
         ],
@@ -122,6 +122,7 @@ export const content = {
           { title: "Control Total", desc: "Administra tu inventario, ventas y compras diarias desde un solo lugar sin complicaciones." },
           { title: "Precios Inteligentes", desc: "Ajusta tus precios fácilmente, maneja distintas monedas y obtén el margen de ganancia ideal." },
           { title: "Reportes Claros", desc: "Entiende tu negocio mejor generando reportes en PDF de tus ventas y compras en segundos." },
+          { title: "Seguimiento de Precios", desc: "Registra precios de venta de proveedores, fabricantes y competencia, así como el costo para clientes y prestadores de servicio." },
           { title: "Tranquilidad y Respaldo", desc: "Tu información siempre segura gracias a copias de seguridad automáticas en la nube." }
         ],
         technicalFeatures: [
@@ -162,7 +163,8 @@ export const content = {
           { title: "Entrena a tu Ritmo", desc: "Sigue tus rutinas fácilmente en el gimnasio con un reproductor que no interrumpe tu música." },
           { title: "Comunidad Activa", desc: "Conecta con otros deportistas, comparte tus logros y mantén la motivación a tope." },
           { title: "Librería de Ejercicios", desc: "Descubre cientos de ejercicios con instrucciones claras para mejorar tu técnica." },
-          { title: "Progreso Visible", desc: "Registra tus pesos y repeticiones para ver exactamente cómo has mejorado cada semana." }
+          { title: "Progreso Visible", desc: "Registra tus pesos y repeticiones para ver exactamente cómo has mejorado cada semana." },
+          { title: "Unidades de Peso Personalizables", desc: "Elige registrar tu progreso en kilogramos, libras, discos, barras o incluso tu propio peso corporal." }
         ],
         technicalFeatures: [
           { title: "Entrenamiento Activo (Background Player)", desc: "Reproductor en segundo plano con notificaciones persistentes (Sticky), alertas de vibración/sonido y protección offline ante pérdidas de red." },
@@ -227,8 +229,8 @@ export const content = {
           "/proyectos/sada-config.png",
         ],
         features: [
-          { title: "Easy Shopping", desc: "Intuitive digital catalog so your customers can find what they need in seconds." },
-          { title: "Safe Inventory", desc: "Never sell out-of-stock items thanks to instant inventory synchronization." },
+          { title: "Complete Administrative Management", desc: "Add, modify, or delete products, user accounts, and configure site settings from an intuitive admin panel." },
+          { title: "Real-Time Availability", desc: "Easily manage your catalog by instantly showing customers if a product is available or out of stock." },
           { title: "Fast and Accessible", desc: "Designed to load instantly on any mobile phone or computer." },
           { title: "Direct Contact", desc: "Customers connect directly with you via WhatsApp to close sales personally." }
         ],
@@ -303,6 +305,7 @@ export const content = {
           { title: "Total Control", desc: "Manage your daily inventory, sales, and purchases from one place without complications." },
           { title: "Smart Pricing", desc: "Easily adjust prices, handle multiple currencies, and get your ideal profit margin." },
           { title: "Clear Reports", desc: "Better understand your business by generating PDF sales and purchase reports in seconds." },
+          { title: "Price Tracking", desc: "Track selling prices from suppliers, manufacturers, and competitors, as well as costs for clients and service providers." },
           { title: "Peace of Mind", desc: "Your data is always safe with automatic cloud backups every time you close the app." }
         ],
         technicalFeatures: [
@@ -343,7 +346,8 @@ export const content = {
           { title: "Train at your Pace", desc: "Easily follow your routines at the gym with a workout player that won't interrupt your music." },
           { title: "Active Community", desc: "Connect with other athletes, share your achievements, and keep your motivation high." },
           { title: "Exercise Library", desc: "Discover hundreds of exercises with clear instructions to improve your technique." },
-          { title: "Visible Progress", desc: "Log your weights and reps to see exactly how you've improved each week." }
+          { title: "Visible Progress", desc: "Log your weights and reps to see exactly how you've improved each week." },
+          { title: "Customizable Weight Units", desc: "Choose to log your progress in kilograms, pounds, plates, bars, or even your own body weight." }
         ],
         technicalFeatures: [
           { title: "Active Workout (Background Player)", desc: "Background player with sticky notifications, haptic/audio alerts, and offline protection against network loss." },

@@ -21,7 +21,7 @@ function Footer({ lang = "es" }) {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-text-muted text-sm text-center md:text-left">
           <p className="font-medium text-text-main mb-1">
-            &copy; {currentYear} VL Systems.
+            &copy; {currentYear} VaLm Systems.
           </p>
           <p>{t.developed}</p>
         </div>

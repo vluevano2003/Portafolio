@@ -36,9 +36,6 @@
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-main);
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(251, 146, 60, 0.08) 0%, transparent 25%);
   background-attachment: fixed;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;

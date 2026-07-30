@@ -5,6 +5,7 @@ import {
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   X,
   Store,
   Download,
@@ -26,6 +27,7 @@ function ProjectDetails({ lang = "es" }) {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showTechDetails, setShowTechDetails] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -205,12 +207,12 @@ function ProjectDetails({ lang = "es" }) {
       </section>
 
       {/* Características */}
-      <section className="mb-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-left">
+      <section className="mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 md:gap-6 text-center">
           {project.features.map((feature, index) => (
             <div
               key={index}
-              className="bg-transparent p-6 md:p-8 rounded-2xl border border-dashed border-border-subtle hover:border-primary/50 transition-colors"
+              className="bg-transparent p-6 md:p-8 rounded-2xl border border-dashed border-border-subtle hover:border-primary transition-colors flex flex-col justify-center"
             >
               <h4 className="font-semibold text-text-main mb-3 text-base md:text-lg">
                 {feature.title}
@@ -223,47 +225,62 @@ function ProjectDetails({ lang = "es" }) {
         </div>
       </section>
 
-      <div className="bg-bg-card p-8 md:p-12 rounded-[2rem] mb-8 max-w-5xl mx-auto">
-        {/* Características Técnicas */}
-        {project.technicalFeatures && (
-          <section className="mb-16">
-            <h3 className="text-3xl font-bold mb-10 text-center text-text-main">
-              {t.technicalFeaturesTitle}
+      <div className="bg-bg-card rounded-[2rem] mb-8 max-w-5xl mx-auto transition-all duration-300">
+        <button
+          onClick={() => setShowTechDetails(!showTechDetails)}
+          className={`flex items-center justify-center gap-2 text-base font-bold text-text-muted transition-colors focus:outline-none w-full py-3 md:py-4`}
+        >
+          <span className={`transition-all duration-300 overflow-hidden whitespace-nowrap ${showTechDetails ? "max-w-0 opacity-0" : "max-w-[200px] opacity-100"}`}>
+            {lang === "es" ? "Detalles Técnicos" : "Technical Details"}
+          </span>
+          <ChevronDown
+            size={20}
+            className={`transition-transform duration-300 ${showTechDetails ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        <div className={`w-full overflow-hidden transition-all duration-500 ease-in-out px-6 sm:px-8 md:px-12 ${showTechDetails ? 'max-h-[5000px] opacity-100 pb-8 md:pb-12 mt-4 md:mt-6' : 'max-h-0 opacity-0 pb-0 mt-0'}`}>
+          {/* Características Técnicas */}
+          {project.technicalFeatures && (
+            <section className="mb-16">
+              <h3 className="text-2xl font-bold mb-10 text-center text-text-main">
+                {t.technicalFeaturesTitle}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 md:gap-6 text-center">
+                {project.technicalFeatures.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="bg-bg-base p-6 md:p-8 rounded-2xl border border-border-subtle hover:border-primary transition-all flex flex-col justify-center"
+                  >
+                    <h4 className="font-semibold text-text-main mb-3 text-base md:text-lg">
+                      {feature.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-text-muted leading-relaxed">
+                      {feature.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Tecnologías */}
+          <section className="text-center max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold mb-8 text-text-main">
+              {t.techTitle}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 text-left">
-              {project.technicalFeatures.map((feature, index) => (
+            <div className="flex flex-wrap justify-center gap-3">
+              {project.technologies.map((tech, index) => (
                 <div
                   key={index}
-                  className="bg-bg-base p-6 md:p-8 rounded-2xl border border-dashed border-border-subtle hover:border-primary/50 transition-colors"
+                  className="bg-bg-base border border-border-subtle rounded-xl px-5 py-3 text-sm font-medium text-text-main hover:border-primary transition-colors"
                 >
-                  <h4 className="font-semibold text-text-main mb-3 text-base md:text-lg">
-                    {feature.title}
-                  </h4>
-                  <p className="text-sm md:text-base text-text-muted leading-relaxed">
-                    {feature.desc}
-                  </p>
+                  {tech}
                 </div>
               ))}
             </div>
           </section>
-        )}
-
-        {/* Tecnologías */}
-        <section className="text-center max-w-4xl mx-auto">
-          <h3 className="text-3xl font-bold mb-8 text-text-main">
-            {t.techTitle}
-          </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {project.technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="bg-bg-base border border-border-subtle rounded-xl px-5 py-3 text-sm font-medium text-text-main shadow-sm hover:border-primary/50 transition-colors"
-              >
-                {tech}
-              </div>
-            ))}
-          </div>
-        </section>
+        </div>
       </div>
 
     </div>

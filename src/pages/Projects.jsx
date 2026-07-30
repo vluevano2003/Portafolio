@@ -8,8 +8,7 @@ function Projects({ lang = "es" }) {
 
   return (
     <div className="py-10 animate-fade-in relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      
+
       <section id="proyectos" className="relative z-10">
         <h3 className="text-3xl font-bold mb-10 text-center text-text-main">
           {lang === "es" ? "Portafolio Completo" : "Complete Portfolio"}
