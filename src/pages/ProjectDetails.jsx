@@ -110,7 +110,7 @@ function ProjectDetails({ lang = "es" }) {
       <div className="flex justify-start mb-8 md:mb-12">
         <Link
           to="/"
-          className="text-primary-light hover:text-primary inline-flex items-center gap-2 transition-colors font-medium"
+          className="text-primary hover:text-primary-dark inline-flex items-center gap-2 transition-colors font-medium"
         >
           <ArrowLeft size={20} />
           {t.back}
