@@ -67,10 +67,10 @@ function Home({ lang = "es" }) {
               {t.description}
             </p>
             <div className="pt-4">
-              <a href="#contacto" className="px-6 py-3 md:px-8 md:py-4 bg-primary hover:bg-primary-dark text-white transition-colors rounded-xl font-bold shadow-lg inline-flex items-center gap-3 text-base md:text-lg group">
+              <Link to="/contacto" className="px-6 py-3 md:px-8 md:py-4 bg-primary hover:bg-primary-dark text-white transition-colors rounded-xl font-bold shadow-lg inline-flex items-center gap-3 text-base md:text-lg group">
                 {t.emailBtn}
                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
